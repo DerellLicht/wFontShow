@@ -1,0 +1,77 @@
+#include <windows.h>
+#include "resource.h"
+
+LCDTICO       ICON    "font.ico"
+
+//*******************************************************************
+//  main program dialog
+//*******************************************************************
+#define  PI_X	215
+#define  PI_Y	  4
+#define  PI_FX	(PI_X + 5)
+
+//*********************************************************************************************************
+//  wShowFont dialog definition
+//*********************************************************************************************************
+
+//*********************************************************************************************************
+//  WS_THICKFRAME   Creates a window with a thick frame that can be used to size the window.
+//  04/26/13 - initially, one of these other flags was over-riding WS_THICKFRAME
+//*********************************************************************************************************
+#define	MAIN_DX	   650
+#define	MAIN_DY	   430
+
+IDD_SF_DIALOG DIALOGEX 200, 50, MAIN_DX, MAIN_DY
+// STYLE DS_MODALFRAME | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_THICKFRAME 
+STYLE DS_MODALFRAME | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "wFontList"
+FONT 10, "Times New Roman"
+// FONT 12, "MS Sans Serif"
+BEGIN
+   //  Note: SS_NOTIFY allows a static control to generate tooltip messages
+
+   //********************************************************
+   //  Command field controls
+   //********************************************************
+   LTEXT           "Font name:", IDS_FONTNAME,    7,  7,  36, 10,SS_NOTIFY
+   LTEXT           " ",          IDC_FONTNAME,   47,  7, 230, 10,SS_SUNKEN
+   PUSHBUTTON      "Change Font",IDB_LOAD_FONT,  47, 22,  60, 13
+
+   //********************************************************
+   //  pixel-selection box
+   //********************************************************
+   GROUPBOX        " Pixels ", IDC_STATIC,     295,  1, 45, 34
+   RADIOBUTTON     "Round",    IDC_RB_ROUND,   301, 10, 32, 10, WS_GROUP
+   RADIOBUTTON     "Square",   IDC_RB_SQUARE,  301, 20, 32, 10
+
+   //********************************************************
+   //  dimens-selection box
+   //********************************************************
+   GROUPBOX        " Dimens ",    IDC_STATIC,     350,  1,  65, 50
+   LTEXT           "Pixel Diam:", IDS_PIXDIAM,    355, 11,  37, 10,SS_NOTIFY
+   LTEXT           " ",           IDC_PIXDIAM,    390, 10,  20, 10,SS_SUNKEN
+   LTEXT           "Bit gap:",    IDS_BITGAP,     355, 24,  37, 10,SS_NOTIFY
+   LTEXT           " ",           IDC_BITGAP,     390, 23,  20, 10,SS_SUNKEN
+   LTEXT           "Char gap:",   IDS_CHARGAP,    355, 37,  37, 10,SS_NOTIFY
+   LTEXT           " ",           IDC_CHARGAP,    390, 36,  20, 10,SS_SUNKEN
+
+   //********************************************************
+   //  colors-selection box
+   //********************************************************
+   GROUPBOX        " Colors ",    IDC_STATIC,     425,  1,  65, 50
+   PUSHBUTTON      " Set ",       IDB_ATTR_SET,   430, 10,  25, 10
+   LTEXT           "",     	  IDC_SHOW_SET,   460, 10,  25, 10, 0, WS_EX_CLIENTEDGE
+   PUSHBUTTON      " Clear ",     IDB_ATTR_CLEAR, 430, 23,  25, 10
+   LTEXT           "",     	  IDC_SHOW_CLEAR, 460, 23,  25, 10, 0, WS_EX_CLIENTEDGE
+   PUSHBUTTON      " Bgnd ",      IDB_ATTR_BGND,  430, 36,  25, 10
+   LTEXT           "",     	  IDC_SHOW_BGND,  460, 36,  25, 10, 0, WS_EX_CLIENTEDGE
+
+   DEFPUSHBUTTON   "Exit",        IDOK,	          500,  5,  30, 13
+
+   //  font-rendering control
+   LTEXT           "",     	  IDC_SHOW_FONT,    1, 55,  MAIN_DX-3, MAIN_DY-50-18, 0, WS_EX_CLIENTEDGE
+
+END
+
+
